@@ -33,3 +33,10 @@ clone会有一个.git文件，而下载压缩包后解压，没有.git文件，�
 
 ![image-20220813072037459](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220813072037459.png)
 
+
+
+
+
+取消代理  git config --global --unset http.proxy
+
+git config --global --unset https.proxy
