@@ -72,3 +72,40 @@ $ git reset --soft HEAD~3   # 回退上上上一个版本
 取消代理  git config --global --unset http.proxy
 
 git config --global --unset https.proxy
+
+
+
+
+
+# 学习笔记
+
+![image-20220829192640431](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220829192640431.png)’
+
+林大神    	发明  Linux  git
+
+![image-20220829193354627](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220829193354627.png)
+
+![image-20220829193602521](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220829193602521.png)
+
+git  init  让git获取管理权
+
+没有办法表达出修改一行，只能说删除一行，之后增加一行![image-20220829195328030](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220829195328030.png)
+
+指向了这个版本![image-20220829195445123](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220829195445123.png)
+
+
+
+
+
+
+
+## 命令
+
+```livescript
+git rm --cached hello.txt
+git commit -m ""     //-m  是提交信息的意思，不写，之后也要写
+$ git reflog   //查看版本日志信息
+ git log     //详细版
+git reset --hard  版本号//版本号在  git relog 时显示在最前面
+```
+
