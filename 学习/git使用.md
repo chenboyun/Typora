@@ -184,6 +184,42 @@ log里面可以看到三个版本![image-20220829213659482](C:\Users\Administrat
 
 合并分支![image-20220829214111946](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220829214111946.png)
 
+![image-20220830084503798](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220830084503798.png)
+
+![image-20220830084701583](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220830084701583.png)
+
+提交的时候可能比较卡，使用SSH![image-20220830084758998](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220830084758998.png)
+
+![image-20220830084946725](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220830084946725.png)
+
+克隆项目![image-20220830085123572](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220830085123572.png)
+
+马云的话用https也可以，因为服务器在国内
+
+push的时候要指定push到哪里，这里要改一下URL![image-20220830090041823](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220830090041823.png)
+
+创建仓库的时候可以导入已有仓库![image-20220830090316800](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220830090316800.png)
+
+更新了github之后要同步到gitee![image-20220830090437437](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220830090437437.png)
+
+小圈圈是强制更新
+
+## gitlib
+
+![image-20220830090623168](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220830090623168.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## 命令
