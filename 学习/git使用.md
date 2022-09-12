@@ -234,12 +234,29 @@ git branch   branchname   创建分支
 git branch -v   查看分支
 git checkout branchname   切换分支
 git merge  branchname  指定分支合并到当前分支上。   //合并 融合
+
+git remote set-url origin <remote-url>   修改远程仓库地址：
+git remote rm origin//删除指定的远程仓库：
 git remote -v     查看别名
 git remote add Typora https://github.com/chenboyun/Typora.git  添加别名 
 git push Typora 分支名    //推送
 git pull Typora main  //拉取代码
 git clone https.................  //克隆，不需要登陆，因为是公共的
 
+工作区回滚：git checkout <filename>
+撤销最后一次提交：git reset HEAD^1
+$ git reset HEAD^            # 回退所有内容到上一个版本  
+$ git reset HEAD^ hello.php  # 回退 hello.php 文件的版本到上一个版本  
+$ git  reset  052e           # 回退到指定版本
+git reset --soft HEAD
+$ git reset --soft HEAD~3   # 回退上上上一个版本 
+$ git log --oneline   //我们可以用 --oneline 选项来查看历史记录的简洁的版本。
+
+$ git log --reverse --oneline //你也可以用 --reverse 参数来逆向显示所有日志。
+
+$ git log --author=Linus --oneline -5  //如果只想查找指定用户的提交日志可以使用命令：git log --author , 例如，比方说我们要找 Git 源码中 Linus 提交的部分：
+
+git blame <file>   //如果要查看指定文件的修改记录可以使用 git blame 命令，
 ```
 
 寻找git.config    git config --list --show-origin

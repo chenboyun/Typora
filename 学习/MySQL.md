@@ -338,3 +338,9 @@ UNIQUE [indexName] (username(length))
 .更新主键的代价很高，因为将会导致被更新的行移动。因此，对于InnoDB表，我们一般定义主键为不可更新。
 二级索引访问需要两次索引查找，第一次找到主键值，第二次根据主键值找到行数据。
 
+# 面试题
+
+![image-20220901154613052](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220901154613052.png)
+
+[小破站高质量面试题：MySQL 夺命连环50问（高频面试题及解析）_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1ta411C7xq?spm_id_from=333.337.search-card.all.click&vd_source=14dd36e0ffe11b8a93626170e816f2d7)
+
