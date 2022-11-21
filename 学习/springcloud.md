@@ -92,8 +92,26 @@ docker可以直接调用内核![image-20220831193034142](C:\Users\Administrator\
 
 ES就是一个将词条作为索引的搜索引擎，进行两次搜索，先根据词条找到ID之后根据ID找到文档；正向索引是先找ID之后从这个ID的文档里面找词条，而倒序索引是先找词条，然后根据词条去找ID，找到文档
 
+![image-20220903150543939](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220903150543939.png)
 
+MQ解耦合![image-20220903150707015](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220903150707015.png)
+
+雪崩：微服务中，很多东西是相互依靠的，一个服务崩了后面依靠他的也崩了，所以叫雪崩；依赖他的和他依赖的都会崩掉![image-20220903160354592](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220903160354592.png)
 
 
 
 # 常用命令
+
+
+
+# 问题
+
+jdk17启动sentinal失败
+
+异常是由Java 9及以上版本中引入的Java Platform Module System引起的，特别是强封装的实现。
+它仅在特定条件下允许access，最突出的条件是:
+
+- 类型必须是公共的
+- 必须导出拥有的软件包
+- 更改启动命令，打开特定的包装进行反射：
+  `java --add-opens java.base/java.lang=ALL-UNNAMED -jar sentinel-dashboard-1.8.1.jar`

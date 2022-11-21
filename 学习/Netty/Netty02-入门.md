@@ -87,12 +87,12 @@ Netty 在 Java 网络应用框架中的地位就好比：Spring 框架在 JavaEE
 
 ```java
 new ServerBootstrap()
-    .group(new NioEventLoopGroup()) // 1
-    .channel(NioServerSocketChannel.class) // 2
-    .childHandler(new ChannelInitializer<NioSocketChannel>() { // 3
-        protected void initChannel(NioSocketChannel ch) {
-            ch.pipeline().addLast(new StringDecoder()); // 5
-            ch.pipeline().addLast(new SimpleChannelInboundHandler<String>() { // 6
+    .group(new NioEventLoopGroup()) // 1相当于组里面就包含了 selector和线程
+    .channel(NioServerSocketChannel.class) // 2  channel的那一种实现？
+    .childHandler(new ChannelInitializer<NioSocketChannel>() { // 3这个通道是 链接后和客户端进行读写的通道；对这些channel中的handler进行初始化，他本身也是一个handler，他的职责就是添加别的handler
+        protected void initChannel(NioSocketChannel ch) {//添加具体的handler   连接建立后才执行  accpet 调用这个方法；客户端的initchannel同时执行
+            ch.pipeline().addLast(new StringDecoder()); // 5  解码的
+            ch.pipeline().addLast(new SimpleChannelInboundHandler<String>() { // 6自定义handler
                 @Override
                 protected void channelRead0(ChannelHandlerContext ctx, String msg) {
                     System.out.println(msg);
@@ -100,7 +100,7 @@ new ServerBootstrap()
             });
         }
     })
-    .bind(8080); // 4
+    .bind(8080); // 4绑定的监听端口
 ```
 
 代码解读
@@ -130,12 +130,12 @@ new Bootstrap()
     .handler(new ChannelInitializer<Channel>() { // 3
         @Override
         protected void initChannel(Channel ch) {
-            ch.pipeline().addLast(new StringEncoder()); // 8
+            ch.pipeline(“pipeline就是一个流水线”).addLast(new StringEncoder()); // 8里面的处理器类都会被执行
         }
     })
     .connect("127.0.0.1", 8080) // 4
-    .sync() // 5
-    .channel() // 6
+    .sync() // 5  同步方法  连接建立后才执行	
+    .channel() // 6  拿到channel对象
     .writeAndFlush(new Date() + ": hello world!"); // 7
 ```
 
@@ -434,9 +434,9 @@ static void invokeChannelRead(final AbstractChannelHandlerContext next, Object m
 ```
 
 * 如果两个 handler 绑定的是同一个线程，那么就直接调用
-* 否则，把要调用的代码封装为一个任务对象，由下一个 handler 的线程来调用
+* 否则，把要调用的代码封装为一个任务对象，由下一个 handler 的线程来调用；；；；因为需要另一个线程，他不能在当前线程当中执行，把要执行的内容放到runnable中，然后传给下一个handler
 
-
+![image-20221121174142720](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20221121174142720.png)
 
 #### 演示 NioEventLoop 处理普通任务
 
@@ -518,9 +518,9 @@ new Bootstrap()
             ch.pipeline().addLast(new StringEncoder());
         }
     })
-    .connect("127.0.0.1", 8080)
-    .sync()
-    .channel()
+    .connect("127.0.0.1", 8080)//返回类型是channelFuture；；；这个是异步非阻塞的方法，他不关心结果，真正干活的是另外的一个线程
+    .sync()//因为连接是异步非阻塞的，如果没有这个就会还没建立连接就往下执行
+    .channel()//得到的是一个channel对象
     .writeAndFlush(new Date() + ": hello world!");
 ```
 
@@ -590,7 +590,7 @@ channelFuture.addListener((ChannelFutureListener) future -> {
 * 执行到 1 时，连接未建立，打印 `[id: 0x749124ba]`
 * ChannelFutureListener 会在连接建立时被调用（其中 operationComplete 方法），因此执行到 2 时，连接肯定建立了，打印 `[id: 0x749124ba, L:/127.0.0.1:57351 - R:/127.0.0.1:8080]`
 
-
+异步调用，并不是主线城调用![image-20221121184845760](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20221121184845760.png)主要内容就是，连接建立好了之后应该干什么
 
 #### CloseFuture
 
@@ -643,7 +643,9 @@ public class CloseFutureClient {
 
 
 
+一般带着future和![image-20221121183449590](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20221121183449590.png)
 
+​	![image-20221121183617160](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20221121183617160.png)建立连接后才继续执行
 
 #### 💡 异步提升的是什么
 

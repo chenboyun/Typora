@@ -36,3 +36,36 @@ Spring 提供了 Ioc 控制反转，由容器管理对象，对象的依赖关�
 
 
 
+关于for（;;）与while（true）{
+
+```java
+
+public class com.sys.test.TestLoop {
+  public com.sys.test.TestLoop();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: return
+ 
+  public void testFor();
+    Code:
+       0: getstatic     #2                  // Field java/lang/System.out:Ljava/io/PrintStream;
+       3: ldc           #3                  // String testLoop
+       5: invokevirtual #4                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+       8: goto          0
+ 
+  public void testWhile();
+    Code:
+       0: getstatic     #2                  // Field java/lang/System.out:Ljava/io/PrintStream;
+       3: ldc           #3                  // String testLoop
+       5: invokevirtual #4                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+       8: goto          0
+
+
+```
+
+
+
+*但是代码执行方式依赖于编译器，**有的编译器中while是使用寄存器实现的，指令会比较多，性能比较for(;;)较差**，所以在使用中还是建议使用for(;;)。。*
+
+}
